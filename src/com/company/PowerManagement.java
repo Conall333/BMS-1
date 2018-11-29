@@ -5,7 +5,7 @@ public class PowerManagement {
     public void passDriverMode(Integer dm){
 
 
-        System.out.println("\n");
+        System.out.println("\n Power Management in this mode >>> \n");
         hvac(dm);
         communications(dm);
         motor(dm);
@@ -19,20 +19,30 @@ public class PowerManagement {
 
         switch (dm) {
             case 1:
-                System.out.println("Fan Speed is now 5");
+                System.out.println("Fan Speed is 5");
                 break;
             case 2:
-                System.out.println("Fan Speed is now 4");
+                System.out.println("Fan Speed is 4");
                 break;
             case 3:
-                System.out.println("Fan Speed is now 3");
+                System.out.println("Fan Speed is 3");
+                break;
+            case 4:
+                System.out.println("Fan Speed is 3");
                 break;
             case 5:
-                System.out.println("Fan Speed is now 2");
-                System.out.println("Max temp  is now 18");
+                System.out.println("Fan Speed is  2");
+                System.out.println("Max hvac temp is 18 C");
+                break;
+            case 6:
+                System.out.println("Fan Speed is  2");
+                System.out.println("Max hvac temp is 18 C");
                 break;
             case 7:
-                System.out.println("Fan Speed is now 1");
+                System.out.println("Fan Speed is 1");
+                break;
+            case 8:
+                System.out.println("Fan Speed is 1");
                 break;
 
             default:
@@ -49,10 +59,33 @@ public class PowerManagement {
         switch (dm) {
 
             case 1:
-                System.out.println("Cellular is now Disabled");
+                System.out.println("Cellular is Disabled");
                 System.out.println("Bluetooth is Enabled");
                 break;
-
+            case 2:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
+            case 3:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
+            case 4:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
+            case 5:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
+            case 6:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
+            case 7:
+                System.out.println("Cellular is Disabled");
+                System.out.println("Bluetooth is Enabled");
+                break;
             case 8:
                 System.out.println("bluetooth is now Disabled");
                 break;
@@ -72,16 +105,28 @@ public class PowerManagement {
         switch (dm) {
 
             case 1:
-                System.out.println("Top Speed is now 100 km/h");
+                System.out.println("Top Speed is 140 km/h");
+                break;
+            case 2:
+                System.out.println("Top Speed is 140 km/h");
                 break;
             case 3:
-                System.out.println("Top Speed is now 120 km/h");
+                System.out.println("Top Speed is 120 km/h");
+                break;
+            case 4:
+                System.out.println("Top Speed is 120 km/h");
+                break;
+            case 5:
+                System.out.println("Top Speed is 120 km/h");
                 break;
             case 6:
-                System.out.println("Top Speed is now 100 km/h");
+                System.out.println("Top Speed is 100 km/h");
                 break;
             case 7:
-                System.out.println("Top Speed is now 80 km/h");
+                System.out.println("Top Speed is 80 km/h");
+                break;
+            case 8:
+                System.out.println("Top Speed is 80 km/h");
                 break;
 
 
@@ -103,6 +148,25 @@ public class PowerManagement {
             case 2:
                 System.out.println("Limited gui adaptive brightness enabled");
                 break;
+            case 3:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+            case 4:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+            case 5:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+            case 6:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+            case 7:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+            case 8:
+                System.out.println("Limited gui adaptive brightness enabled");
+                break;
+
 
 
             default:
@@ -118,18 +182,30 @@ public class PowerManagement {
         switch (dm) {
 
             case 1:
-                System.out.println("Max volume now 90%");
+                System.out.println("Max volume is 90%");
                 break;
-
             case 2:
-                System.out.println("Max volume now 80%");
+                System.out.println("Max volume is 80%");
+                break;
+            case 3:
+                System.out.println("Max volume is 80%");
+                break;
+            case 4:
+                System.out.println("Max volume is 80%");
                 break;
             case 5:
-                System.out.println("Max volume now 60%");
+                System.out.println("Max volume is 60%");
+                break;
+            case 6:
+                System.out.println("Max volume is 60%");
                 break;
             case 7:
-                System.out.println("Max volume now 50%");
+                System.out.println("Max volume is 50%");
                 break;
+            case 8:
+                System.out.println("Max volume is 50%");
+                break;
+
 
 
             default:
