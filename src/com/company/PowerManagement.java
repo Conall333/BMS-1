@@ -5,7 +5,7 @@ public class PowerManagement {
     public void passDriverMode(Integer dm){
 
 
-        System.out.println("\n Power Management in this mode >>> \n");
+        System.out.println("\nPower Management in this mode >>> \n");
         hvac(dm);
         communications(dm);
         motor(dm);

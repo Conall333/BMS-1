@@ -12,9 +12,13 @@ public class GUI {
     public void GUI(int dm, Float soc, String bInfo, ArrayList<Float> nav) {
 
         // AutoswitchMode(dm,soc);
-        alertInfo(dm);
+
+        System.out.println("\nGUI Information >>>\n");
         displaySoc(soc);
         batteryDetails(bInfo);
+
+        alertInfo(dm);
+
        // displayRoute(nav);
 
 
@@ -110,7 +114,7 @@ public class GUI {
     private void batteryDetails(String  binfo) {
 
 
-        System.out.println("Battery Power : 35V \n Current : 3amp ");
+        System.out.println("Battery Power : 35V \nCurrent : 3amp ");
 
     }
 
