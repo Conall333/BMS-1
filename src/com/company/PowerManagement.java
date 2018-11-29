@@ -25,25 +25,25 @@ public class PowerManagement {
     public void hvac (Integer dm){
 
         switch (dm) {
-            case 0:
+            case 1:
                 System.out.println("Fan Speed is now 5");
                 break;
-            case 1:
+            case 2:
                 System.out.println("Fan Speed is now 4");
                 break;
-            case 2:
+            case 3:
                 System.out.println("Fan Speed is now 3");
                 break;
-            case 4:
+            case 5:
                 System.out.println("Fan Speed is now 2");
                 System.out.println("Max temp  is now 18");
                 break;
-            case 6:
+            case 7:
                 System.out.println("Fan Speed is now 1");
                 break;
 
             default:
-                
+
 
         }
 
@@ -55,12 +55,12 @@ public class PowerManagement {
 
         switch (dm) {
 
-            case 0:
+            case 1:
                 System.out.println("Cellular is now Disabled");
                 System.out.println("Bluetooth is Enabled");
                 break;
 
-            case 7:
+            case 8:
                 System.out.println("bluetooth is now Disabled");
                 break;
 
@@ -78,16 +78,16 @@ public class PowerManagement {
 
         switch (dm) {
 
-            case 0:
+            case 1:
                 System.out.println("Top Speed is now 100 km/h");
                 break;
-            case 2:
+            case 3:
                 System.out.println("Top Speed is now 120 km/h");
                 break;
-            case 5:
+            case 6:
                 System.out.println("Top Speed is now 100 km/h");
                 break;
-            case 6:
+            case 7:
                 System.out.println("Top Speed is now 80 km/h");
                 break;
 
@@ -104,10 +104,10 @@ public class PowerManagement {
 
         switch (dm) {
 
-            case 0:
+            case 1:
                 System.out.println("GUI adaptive brightness disabled");
                 break;
-            case 1:
+            case 2:
                 System.out.println("Limited gui adaptive brightness enabled");
                 break;
 
@@ -124,17 +124,17 @@ public class PowerManagement {
 
         switch (dm) {
 
-            case 0:
+            case 1:
                 System.out.println("Max volume now 90%");
                 break;
 
-            case 1:
+            case 2:
                 System.out.println("Max volume now 80%");
                 break;
-            case 4:
+            case 5:
                 System.out.println("Max volume now 60%");
                 break;
-            case 6:
+            case 7:
                 System.out.println("Max volume now 50%");
                 break;
 
