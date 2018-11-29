@@ -2,17 +2,10 @@ package com.company;
 
 public class PowerManagement {
 
-    public static void main(String[] args) {
-
-        PowerManagement powerManagement = new PowerManagement();
-        powerManagement.passDriverMode(0);
-
-
-    }
-
-
     public void passDriverMode(Integer dm){
 
+
+        System.out.println("\n");
         hvac(dm);
         communications(dm);
         motor(dm);
