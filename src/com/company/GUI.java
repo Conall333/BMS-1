@@ -33,7 +33,7 @@ public class GUI {
                 break;
 
             case 3:
-                System.out.println("Searching for charging station");
+               // System.out.println("Searching for charging station");
                 break;
 
             case 7:
