@@ -17,9 +17,10 @@ public class GUI {
         displaySoc(soc,dm);
         batteryDetails(bInfo);
 
+
         alertInfo(dm);
 
-       // displayRoute(nav);
+        displayRoute(nav);
 
 
 
@@ -126,17 +127,29 @@ public class GUI {
 
     private void displayRoute(ArrayList<Float> nav) {
 
+        try {
 
-        System.out.println("Please follow provided route to the nearest charging station");
+            Float x = nav.get(0);
+
+            System.out.println("Please follow provided route to the nearest charging station");
+
+        } catch (Exception e){}
 
     }
 
     // user manual asks for a route
-    public boolean SearchForRoute(boolean gpsA){
+    public boolean searchForRoute(){
 
         boolean searchForRoute;
 
-        if (gpsA) {
+
+        System.out.println("Has the user Asked for a route? y/n");
+
+        Scanner sc = new Scanner((System.in));
+        String x = sc.nextLine();
+
+
+        if (x .equalsIgnoreCase("y")) {
 
             searchForRoute = true;
 

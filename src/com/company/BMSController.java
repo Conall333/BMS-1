@@ -60,12 +60,15 @@ public class BMSController {
         //  gets information about the battery
         String bInfo =bms.bInfo();
 
+        // users asks for a route to charging station
+        boolean gpsA = gui.searchForRoute();
+
         // gps calculates location
         ArrayList<Float> loc;
         loc = gps.location();
 
         // location used by the nav to create a route to nearest charging station
-        ArrayList<Float> nav = bms.nav(loc,dm);
+        ArrayList<Float> nav = bms.nav(loc,dm,gpsA);
 
         // gui uses driver mode to display alerts, gui use state of charge to display state of charge
         // uses bInfo to display info about the battery, uses nav to display the route
@@ -180,10 +183,6 @@ public class BMSController {
 
 
 
-
-
-
-
     public int driverMode(float soc, boolean MtA, boolean attemptSearch, boolean reservePwr) {
 
         if (MtA) {    // Auto mode
@@ -239,9 +238,18 @@ public class BMSController {
 
 
 
-    public ArrayList<Float> nav(ArrayList<Float> loc, int dm){
+    public ArrayList<Float> nav(ArrayList<Float> loc, int dm, boolean GpsA){
+
+
        // System.out.println("NAV: Nearest charging point located.");
         ArrayList<Float> nav = new ArrayList<Float>();
+
+        Float myFloat;
+        myFloat = 1.0f;
+
+        if (GpsA) {
+            nav.add(myFloat);
+        }
         return nav;//Co-ordinates
     }
 
