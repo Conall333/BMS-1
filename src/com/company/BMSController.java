@@ -46,30 +46,42 @@ public class BMSController {
         Float myFloat;
         myFloat = 1.0f;
 
+
+        //calculates state of charge, for demoing purpose we take the battery % as a user input
         Float stateOfCharge = bms.Soc(myFloat,myFloat,myFloat,myFloat,myFloat);
 
+        // for demoing purposes
         boolean MtA = bms.initialMtA(stateOfCharge);
+        boolean reservePwr = bms.initialReservePwr(stateOfCharge);
 
-        int dm = bms.driverMode(stateOfCharge,MtA,false,false);
+        // calculates the driver mode
+        int dm = bms.driverMode(stateOfCharge,MtA,false,reservePwr);
 
+        //  gets information about the battery
         String bInfo =bms.bInfo();
 
+        // gps calculates location
         ArrayList<Float> loc;
         loc = gps.location();
 
+        // location used by the nav to create a route to nearest charging station
         ArrayList<Float> nav = bms.nav(loc,dm);
 
+        // gui uses driver mode to display alerts, gui use state of charge to display state of charge
+        // uses bInfo to display info about the battery, uses nav to display the route
         gui.GUI(dm,stateOfCharge,bInfo,nav);
 
+        // power management is only active when the car is in automatic mode
+        if (MtA) {
+            powerManagement.passDriverMode(dm);
+        }
 
-        powerManagement.passDriverMode(dm);
-
+        // Ecall system sends an Ecall when the battery is < 1%
         ECall eCall = new ECall(loc,dm);
-        eCall.send_Ecall();
+        eCall.send_Ecall(dm);
 
 
     }
-
 
 
 
@@ -102,12 +114,11 @@ public class BMSController {
 
 
         if (soc <= 5) {
-            //
 
 
        }
 
-        else if (soc <= 50){
+        if (soc <= 50){
 
 
             System.out.println("Is The car in Automatic mode? y/n: ");
@@ -139,50 +150,94 @@ public class BMSController {
 
     }
 
-    public int driverMode(float soc, boolean MtA, boolean attemptSearch, boolean reservePwr){
 
-            if (MtA) {    // Auto mode
-                if (soc > 50) {
-                    dm = 0;
-                } else if (soc >= 40 && soc < 50) {
-                    dm = 1;
-                } else if (soc >= 25 && soc < 40) {
-                    dm = 2;
-                } else if (soc >= 20 && soc < 25) {
-                    if (attemptSearch) {
-                        dm = 4;
-                    } else {
-                        dm = 3;
-                    }
-                } else if (soc >= 15 && soc < 20) {
-                    dm = 5;
-                } else if (soc >= 10 && soc < 15) {
-                    dm = 6;
-                } else if (soc >= 7 && soc < 10) {
-                    dm = 7;
-                } else if (soc >= 5 && soc < 7) {
-                    dm = 8;
-                } else if (soc >= 0 && soc < 5 && reservePwr == false) {
-                    dm = 9;
-                } else if (soc >= 1 && soc < 5 && reservePwr == true) {
-                    dm = 10;
-                } else if (soc >= 0 && soc < 1 && reservePwr == true) {
-                    dm = 11;
-                }
+    public boolean initialReservePwr(Float soc) {
+
+        if (soc <= 5) {
+
+            reservePwr = false;
+            System.out.println("Is reserve power enabled? y/n: ");
+
+            Scanner sc = new Scanner((System.in));
+            String y = sc.nextLine();
 
 
-                return dm;
+            if (y.equalsIgnoreCase("y")) {
+
+                System.out.println("Reserve power enabled");
+
+                reservePwr = true;
+                return reservePwr;
+
             }
-
-            else {
-                dm = 0;
-
-                return dm;
-            }
-
+        }
+        return reservePwr;
 
 
     }
+
+
+
+
+
+
+
+
+
+    public int driverMode(float soc, boolean MtA, boolean attemptSearch, boolean reservePwr) {
+
+        if (MtA) {    // Auto mode
+            if (soc > 50) {
+                dm = 0;
+            } else if (soc >= 40 && soc < 50) {
+                dm = 1;
+            } else if (soc >= 25 && soc < 40) {
+                dm = 2;
+            } else if (soc >= 20 && soc < 25) {
+                if (attemptSearch) {
+                    dm = 4;
+                } else {
+                    dm = 3;
+                }
+            } else if (soc >= 15 && soc < 20) {
+                dm = 5;
+            } else if (soc >= 10 && soc < 15) {
+                dm = 6;
+            } else if (soc >= 7 && soc < 10) {
+                dm = 7;
+            } else if (soc >= 5 && soc < 7) {
+                dm = 8;
+            } else if (soc >= 0 && soc < 5 && reservePwr == false) {
+                dm = 9;
+            } else if (soc >= 1 && soc < 5 && reservePwr == true) {
+                dm = 10;
+            } else if (soc >= 0 && soc < 1 && reservePwr == true) {
+                dm = 11;
+            }
+
+
+            return dm;
+        } else {
+            dm = 0;
+
+            if (soc >= 7 && soc < 10) {
+                dm = 7;
+            } else if (soc >= 5 && soc < 7) {
+                dm = 8;
+            } else if (soc >= 0 && soc < 5 && reservePwr == false) {
+                dm = 9;
+            } else if (soc >= 1 && soc < 5 && reservePwr == true) {
+                dm = 10;
+            } else if (soc < 1 && reservePwr == true) {
+
+                dm = 11;
+            }
+
+            return dm;
+        }
+    }
+
+
 
     public ArrayList<Float> nav(ArrayList<Float> loc, int dm){
        // System.out.println("NAV: Nearest charging point located.");

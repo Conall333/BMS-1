@@ -87,7 +87,7 @@ public class PowerManagement {
                 System.out.println("Bluetooth is Enabled");
                 break;
             case 8:
-                System.out.println("bluetooth is now Disabled");
+                System.out.println("bluetooth is Disabled");
                 break;
 
 

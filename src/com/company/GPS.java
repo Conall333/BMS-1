@@ -11,8 +11,6 @@ public class GPS {
 
     public ArrayList<Float> location () {
 
-
-
         ArrayList<Float> loc = new ArrayList<Float>();
         Float myFloat;
         myFloat = 1.0f;

@@ -9,14 +9,14 @@ public class ECall {
 
 
 
-    ECall(ArrayList<Float> nloc, int dm ) {
+    ECall(ArrayList<Float> loc, int dm ) {
         dm = this.dm;
         loc = this.loc;
 
     }
 
-    public void send_Ecall(){
-        if (this.dm == 11) {
+    public void send_Ecall(int dm){
+        if (dm == 11) {
 
             // use location to send ecall
             System.out.println("Ecall has been sent");

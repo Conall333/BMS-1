@@ -14,7 +14,7 @@ public class GUI {
         // AutoswitchMode(dm,soc);
 
         System.out.println("\nGUI Information >>>\n");
-        displaySoc(soc);
+        displaySoc(soc,dm);
         batteryDetails(bInfo);
 
         alertInfo(dm);
@@ -37,12 +37,11 @@ public class GUI {
                 break;
 
             case 7:
-                System.out.println("Battery remaining 5% until power down");
+                System.out.println("Battery power low");
                 System.out.println("Bluetooth will soon be disabled");
                 break;
 
             case 8:
-                System.out.println("Bluetooth Disabled");
                 System.out.println("Battery Critically low");
                 System.out.println("Park the car, battery critically low");
                 break;
@@ -54,7 +53,7 @@ public class GUI {
 
             case 9:
                 System.out.println("Battery Exhausted");
-                System.out.println("Warning :: Override for Reserve battery :: Safety compromised");
+                System.out.println("Warning :: Override for Reserve battery can be enabled");
                 break;
 
         }
@@ -93,14 +92,20 @@ public class GUI {
         return  MtA;
     }
 
-    private void displaySoc(Float soc) {
+    private void displaySoc(Float soc,int dm) {
 
         int displayedSoc = Math.round((soc - 5)/95 *100);
 
 
-        if (soc < 5) {
+        if (soc < 5 && dm == 10 || dm == 11) {
 
             System.out.println("The Battery charge remaining is" + soc + "%");
+
+        }
+
+        else if (soc < 5 && dm == 9) {
+
+            System.out.println("The Battery charge remaining is 0 %");
 
         }
         else {
@@ -115,7 +120,7 @@ public class GUI {
 
 
         System.out.println("Battery Power : 35V \nCurrent : 3amp ");
-        System.out.println("Battery under optimal operation conditions ");
+        System.out.println("Battery Health is ok");
 
     }
 
