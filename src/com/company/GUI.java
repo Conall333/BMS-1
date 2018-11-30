@@ -95,7 +95,7 @@ public class GUI {
 
     private void displaySoc(Float soc) {
 
-        int x = Math.round((soc - 5)/95 *100);
+        int displayedSoc = Math.round((soc - 5)/95 *100);
 
 
         if (soc < 5) {
@@ -106,7 +106,7 @@ public class GUI {
         else {
 
 
-            System.out.println("The Battery charge remaining is: " + x + "%");
+            System.out.println("The Battery charge remaining is: " + displayedSoc + "%");
         }
 
     }
@@ -115,6 +115,7 @@ public class GUI {
 
 
         System.out.println("Battery Power : 35V \nCurrent : 3amp ");
+        System.out.println("Battery under optimal operation conditions ");
 
     }
 
@@ -123,6 +124,23 @@ public class GUI {
 
         System.out.println("Please follow provided route to the nearest charging station");
 
+    }
+
+    // user manual asks for a route
+    public boolean SearchForRoute(boolean gpsA){
+
+        boolean searchForRoute;
+
+        if (gpsA) {
+
+            searchForRoute = true;
+
+        } else {
+            searchForRoute = false;
+
+        }
+
+        return  searchForRoute;
     }
 
 }

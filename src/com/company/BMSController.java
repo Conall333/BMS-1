@@ -4,7 +4,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BMSContorller{
+public class BMSController {
 
     // Input Variables...
     // SOH - float
@@ -23,8 +23,8 @@ public class BMSContorller{
     // GUI Output - manual/auto = input to DM
     // reservePower
 
-    float soc = 10;
-    float Soh;
+    float soc;
+    float SoH;
     float V;
     float I;
     float C;
@@ -39,11 +39,12 @@ public class BMSContorller{
     public static void main(String[] args) {
 
         PowerManagement powerManagement = new PowerManagement();
-        BMSContorller bms = new BMSContorller();
+        BMSController bms = new BMSController();
         GUI gui = new GUI();
+        GPS gps = new GPS();
 
         Float myFloat;
-        myFloat = -1.1f;
+        myFloat = 1.0f;
 
         Float stateOfCharge = bms.Soc(myFloat,myFloat,myFloat,myFloat,myFloat);
 
@@ -52,15 +53,19 @@ public class BMSContorller{
         int dm = bms.driverMode(stateOfCharge,MtA,false,false);
 
         String bInfo =bms.bInfo();
-        ArrayList<Float> nav = new ArrayList<Float>();
-        nav.add(myFloat);
 
+        ArrayList<Float> loc;
+        loc = gps.location();
 
+        ArrayList<Float> nav = bms.nav(loc,dm);
 
         gui.GUI(dm,stateOfCharge,bInfo,nav);
 
 
         powerManagement.passDriverMode(dm);
+
+        ECall eCall = new ECall(loc,dm);
+        eCall.send_Ecall();
 
 
     }
@@ -69,7 +74,7 @@ public class BMSContorller{
 
 
 
-    public float Soc(float V, float I, float C, float T, float Soh){
+    public float Soc(float V, float I, float C, float T, float SoH){
 
         System.out.println("Enter battery percentage: ");
 
@@ -78,6 +83,16 @@ public class BMSContorller{
 
 
         return x;
+    }
+
+
+
+    public float SoH(ArrayList SoH_Logs){
+
+
+        Float dummyValue  = 1.1f;
+
+        return dummyValue;
     }
 
 
@@ -90,7 +105,7 @@ public class BMSContorller{
             //
 
 
-        }
+       }
 
         else if (soc <= 50){
 
@@ -155,6 +170,7 @@ public class BMSContorller{
                     dm = 11;
                 }
 
+
                 return dm;
             }
 
@@ -169,8 +185,9 @@ public class BMSContorller{
     }
 
     public ArrayList<Float> nav(ArrayList<Float> loc, int dm){
-        System.out.println("NAV: Nearest charging point located.");
-        return loc;//Co-ordinates
+       // System.out.println("NAV: Nearest charging point located.");
+        ArrayList<Float> nav = new ArrayList<Float>();
+        return nav;//Co-ordinates
     }
 
     public String bInfo() {
