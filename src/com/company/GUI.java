@@ -15,12 +15,13 @@ public class GUI {
 
         System.out.println("\nGUI Information >>>\n");
         displaySoc(soc,dm);
-        batteryDetails(bInfo);
+        displayBinfo(bInfo);
 
 
         alertInfo(dm);
 
         displayRoute(nav);
+
 
 
 
@@ -117,7 +118,7 @@ public class GUI {
 
     }
 
-    private void batteryDetails(String  binfo) {
+    private void  displayBinfo(String  binfo) {
 
 
         System.out.println("Battery Power : 35V \nCurrent : 3amp ");

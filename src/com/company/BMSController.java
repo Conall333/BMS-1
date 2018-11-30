@@ -42,15 +42,24 @@ public class BMSController {
         BMSController bms = new BMSController();
         GUI gui = new GUI();
         GPS gps = new GPS();
+        Database db = new Database();
 
-        Float myFloat;
-        myFloat = 1.0f;
+        Float dummyFloat;
+        dummyFloat = 1.0f;
 
+        // gets Soc logs from database
+        Object logs = db.passSoc_Logs();
+
+        // calculates state of health using logs
+        Float stateOfHealth = bms.SoH(logs);
 
         //calculates state of charge, for demoing purpose we take the battery % as a user input
-        Float stateOfCharge = bms.Soc(myFloat,myFloat,myFloat,myFloat,myFloat);
+        Float stateOfCharge = bms.Soc(dummyFloat,dummyFloat,dummyFloat,dummyFloat,stateOfHealth);
 
-        // for demoing purposes
+        // passes the state of charge to the database,
+        db.HandleSoc_Logs(stateOfCharge);
+
+        // for demoing purposes we need to know what the cars current state is
         boolean MtA = bms.initialMtA(stateOfCharge);
         boolean reservePwr = bms.initialReservePwr(stateOfCharge);
 
@@ -96,90 +105,18 @@ public class BMSController {
         Scanner sc = new Scanner((System.in));
         Float x =  sc.nextFloat();
 
-
         return x;
     }
 
 
 
-    public float SoH(ArrayList SoH_Logs){
+    public float SoH(Object SoH_Logs){
 
 
         Float dummyValue  = 1.1f;
 
         return dummyValue;
     }
-
-
-    public boolean initialMtA(Float soc) {
-
-        boolean MtA = false;
-
-
-        if (soc <= 5) {
-
-
-       }
-
-        if (soc <= 50){
-
-
-            System.out.println("Is The car in Automatic mode? y/n: ");
-
-            Scanner sc = new Scanner((System.in));
-            String x = sc.nextLine();
-
-
-            if (x .equalsIgnoreCase("y")) {
-
-
-                System.out.println("Automatic mode enabled");
-
-
-                MtA = true;
-                return  MtA;
-
-            } else {
-                 MtA = false;
-                return  MtA;
-
-            }
-
-
-
-        }
-        return MtA;
-
-
-    }
-
-
-    public boolean initialReservePwr(Float soc) {
-
-        if (soc <= 5) {
-
-            reservePwr = false;
-            System.out.println("Is reserve power enabled? y/n: ");
-
-            Scanner sc = new Scanner((System.in));
-            String y = sc.nextLine();
-
-
-            if (y.equalsIgnoreCase("y")) {
-
-                System.out.println("Reserve power enabled");
-
-                reservePwr = true;
-                return reservePwr;
-
-            }
-        }
-        return reservePwr;
-
-
-    }
-
-
 
 
 
@@ -258,6 +195,79 @@ public class BMSController {
             // System.out.println("Error Message: Battery requires maintainance.");
         }
         return "Voltage: " + this.V + ", Current: " + this.I + ", Capacity: " + this.C + ", Temperature: " + this.T + ".";
+    }
+
+
+
+
+
+
+    public boolean initialMtA(Float soc) {
+
+        boolean MtA = false;
+
+
+        if (soc <= 5) {
+
+
+        }
+
+        if (soc <= 50){
+
+
+            System.out.println("Is The car in Automatic mode? y/n: ");
+
+            Scanner sc = new Scanner((System.in));
+            String x = sc.nextLine();
+
+
+            if (x .equalsIgnoreCase("y")) {
+
+
+                System.out.println("Automatic mode enabled");
+
+
+                MtA = true;
+                return  MtA;
+
+            } else {
+                MtA = false;
+                return  MtA;
+
+            }
+
+
+
+        }
+        return MtA;
+
+
+    }
+
+
+    public boolean initialReservePwr(Float soc) {
+
+        if (soc <= 5) {
+
+            reservePwr = false;
+            System.out.println("Is reserve power enabled? y/n: ");
+
+            Scanner sc = new Scanner((System.in));
+            String y = sc.nextLine();
+
+
+            if (y.equalsIgnoreCase("y")) {
+
+                System.out.println("Reserve power enabled");
+
+                reservePwr = true;
+                return reservePwr;
+
+            }
+        }
+        return reservePwr;
+
+
     }
 
 }
