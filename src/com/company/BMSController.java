@@ -6,6 +6,30 @@ import java.util.Scanner;
 
 public class BMSController {
 
+    boolean noCmdLineInput = true;
+
+
+    public double soc;
+    float SoH;
+    float V;
+    float I;
+    float C;
+    float T;
+    public boolean mode;
+    public boolean reservePwr;
+    public boolean route;
+    boolean attemptSearch;
+    int dm;
+    ArrayList<Float> loc;
+
+
+    public BMSController (double soc, boolean mode, boolean route, boolean reservePwr) {
+        this.soc = soc;
+        this.mode = mode;
+        this.reservePwr = reservePwr;
+        this.route = route;
+    }
+
     // Input Variables...
     // SOH - float
     // V - float
@@ -23,87 +47,104 @@ public class BMSController {
     // GUI Output - manual/auto = input to DM
     // reservePower
 
-    float soc;
-    float SoH;
-    float V;
-    float I;
-    float C;
-    float T;
-    boolean MtA;
-    boolean reservePwr;
-    boolean attemptSearch;
-    int dm;
-    ArrayList<Float> loc;
-
 
     public static void main(String[] args) {
 
+        BMSController bms = new BMSController(40,true,false,false);
+        bms.run();
+
+    }
+
+
+    public void run(){
+
         PowerManagement powerManagement = new PowerManagement();
-        BMSController bms = new BMSController();
-        GUI gui = new GUI();
-        GPS gps = new GPS();
-        Database db = new Database();
+        BMSController bms = new BMSController(soc,mode,route,reservePwr);
+        if (!bms.checkInputs()) {
 
-        Float dummyFloat;
-        dummyFloat = 1.0f;
+            GUI gui = new GUI();
+            GPS gps = new GPS();
+            Database db = new Database();
 
-        // gets Soc logs from database
-        Object logs = db.passSoc_Logs();
+            Float dummyFloat;
+            dummyFloat = 1.0f;
 
-        // calculates state of health using logs
-        Float stateOfHealth = bms.SoH(logs);
+            // gets Soc logs from database
+            Object logs = db.passSoc_Logs();
 
-        //calculates state of charge, for demoing purpose we take the battery % as a user input
-        Float stateOfCharge = bms.Soc(dummyFloat,dummyFloat,dummyFloat,dummyFloat,stateOfHealth);
+            // calculates state of health using logs
+            Float stateOfHealth = bms.SoH(logs);
 
-        // passes the state of charge to the database,
-        db.HandleSoc_Logs(stateOfCharge);
+            //calculates state of charge, for demoing purpose we take the battery % as a user input
+            double stateOfCharge = bms.Soc(dummyFloat, dummyFloat, dummyFloat, dummyFloat, stateOfHealth);
 
-        // for demoing purposes we need to know what the cars current state is
-        boolean MtA = bms.initialMtA(stateOfCharge);
-        boolean reservePwr = bms.initialReservePwr(stateOfCharge);
+            // passes the state of charge to the database,
+            db.HandleSoc_Logs(stateOfCharge);
 
-        // calculates the driver mode
-        int dm = bms.driverMode(stateOfCharge,MtA,false,reservePwr);
+            // for demoing purposes we need to know what the cars current state is
+            boolean MtA = bms.initialMtA(stateOfCharge);
+            boolean reservePwr = bms.initialReservePwr(stateOfCharge);
 
-        //  gets information about the battery
-        String bInfo =bms.bInfo();
+            // calculates the driver mode
+            int dm = bms.driverMode(stateOfCharge, MtA, false, reservePwr);
 
-        // users asks for a route to charging station
-        boolean gpsA = gui.searchForRoute();
+            //  gets information about the battery
+            String bInfo = bms.bInfo();
 
-        // gps calculates location
-        ArrayList<Float> loc;
-        loc = gps.location();
+            // users asks for a route to charging station
+            boolean gpsA = gui.searchForRoute(bms.route);
 
-        // location used by the nav to create a route to nearest charging station
-        ArrayList<Float> nav = bms.nav(loc,dm,gpsA);
+            // gps calculates location
+            ArrayList<Float> loc;
+            loc = gps.location();
 
-        // gui uses driver mode to display alerts, gui use state of charge to display state of charge
-        // uses bInfo to display info about the battery, uses nav to display the route
-        gui.GUI(dm,stateOfCharge,bInfo,nav);
+            // location used by the nav to create a route to nearest charging station
+            ArrayList<Float> nav = bms.nav(loc, dm, gpsA);
 
-        // power management is only active when the car is in automatic mode
-        if (MtA) {
-            powerManagement.passDriverMode(dm);
+            // gui uses driver mode to display alerts, gui use state of charge to display state of charge
+            // uses bInfo to display info about the battery, uses nav to display the route
+            gui.GUI(dm, stateOfCharge, bInfo, nav);
+
+            // power management is only active when the car is in automatic mode
+            if (MtA) {
+                powerManagement.passDriverMode(dm);
+            }
+
+            // Ecall system sends an Ecall when the battery is < 1%
+            ECall eCall = new ECall(loc, dm);
+            eCall.send_Ecall(dm);
+
         }
 
-        // Ecall system sends an Ecall when the battery is < 1%
-        ECall eCall = new ECall(loc,dm);
-        eCall.send_Ecall(dm);
+    }
+
+
+    public boolean checkInputs() {
+        if (soc > 100 || soc < 0) {
+            System.out.println("invalid soc");
+            return true;
+
+        }
+        else {
+            return false;
+        }
 
 
     }
 
 
+    public double Soc(float V, float I, float C, float T, float SoH){
 
 
-    public float Soc(float V, float I, float C, float T, float SoH){
+        if (noCmdLineInput){
+            return soc;
+        }
 
         System.out.println("Enter battery percentage: ");
 
         Scanner sc = new Scanner((System.in));
         Float x =  sc.nextFloat();
+
 
         return x;
     }
@@ -120,7 +161,7 @@ public class BMSController {
 
 
 
-    public int driverMode(float soc, boolean MtA, boolean attemptSearch, boolean reservePwr) {
+    public int driverMode(double soc, boolean MtA, boolean attemptSearch, boolean reservePwr) {
 
         if (MtA) {    // Auto mode
             if (soc > 50) {
@@ -202,7 +243,7 @@ public class BMSController {
 
 
 
-    public boolean initialMtA(Float soc) {
+    public boolean initialMtA(Double soc) {
 
         boolean MtA = false;
 
@@ -214,6 +255,15 @@ public class BMSController {
 
         if (soc <= 50){
 
+            if (noCmdLineInput){
+
+                if(mode) {
+                    System.out.println("Automatic mode is enabled");
+                }
+
+                return mode;
+            }
+
 
             System.out.println("Is The car in Automatic mode? y/n: ");
 
@@ -224,7 +274,7 @@ public class BMSController {
             if (x .equalsIgnoreCase("y")) {
 
 
-                System.out.println("Automatic mode enabled");
+                System.out.println("Automatic mode is enabled");
 
 
                 MtA = true;
@@ -245,11 +295,24 @@ public class BMSController {
     }
 
 
-    public boolean initialReservePwr(Float soc) {
+    public boolean initialReservePwr(Double soc) {
 
         if (soc <= 5) {
 
             reservePwr = false;
+
+            if (noCmdLineInput){
+
+                if(reservePwr) {
+                    System.out.println("Reserve power enabled");
+                }
+
+                return reservePwr;
+            }
+
+
+
+
             System.out.println("Is reserve power enabled? y/n: ");
 
             Scanner sc = new Scanner((System.in));

@@ -3,7 +3,7 @@ package com.company;
 public class Database {
 
 
-    public void HandleSoc_Logs(Float soc) {
+    public void HandleSoc_Logs(Double soc) {
 
         //monitors the cars state of charge during a trip
         // and logs it a database

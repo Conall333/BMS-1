@@ -5,11 +5,11 @@ import java.util.Scanner;
 
 public class GUI {
 
+    boolean noCmdLineInput = true;
 
-    int dm;
 
 
-    public void GUI(int dm, Float soc, String bInfo, ArrayList<Float> nav) {
+    public void GUI(int dm, Double soc, String bInfo, ArrayList<Float> nav) {
 
         // AutoswitchMode(dm,soc);
 
@@ -94,9 +94,9 @@ public class GUI {
         return  MtA;
     }
 
-    private void displaySoc(Float soc,int dm) {
+    private void displaySoc(double soc,int dm) {
 
-        int displayedSoc = Math.round((soc - 5)/95 *100);
+        int displayedSoc = (int) Math.round((soc - 5)/95 *100);
 
 
         if (soc < 5 && dm == 10 || dm == 11) {
@@ -139,9 +139,15 @@ public class GUI {
     }
 
     // user manual asks for a route
-    public boolean searchForRoute(){
+    public boolean searchForRoute(boolean route){
 
         boolean searchForRoute;
+
+        if (noCmdLineInput) {
+            return route;
+
+        }
+
 
 
         System.out.println("Has the user Asked for a route? y/n");
