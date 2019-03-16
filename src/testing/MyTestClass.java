@@ -13,17 +13,17 @@ public class MyTestClass {
 
         @Test
         public void testBMS1() {
-            double batteryPercentage = 100;
-            boolean mode = false;
-            boolean route = true;
+            double batteryPercentage = 45;
+            boolean mode = true;
+            boolean route = false;
             boolean reservePower = false;
 
 
             System.out.println("\nTest Parameters --> ");
-            System.out.println("\n BatteryPercentage: " + batteryPercentage);
-            System.out.println("\n Car mode: " + mode);
-            System.out.println("\n Route asked for?: " + route);
-            System.out.println("\n Reserve Power Enabled: " + reservePower);
+            System.out.println(" BatteryPercentage: " + batteryPercentage);
+            System.out.println(" Car mode: " + mode);
+            System.out.println(" Route asked for?: " + route);
+            System.out.println(" Reserve Power Enabled: " + reservePower +"\n\nOutputs >>>> \n");
 
 
             BMSController bms = new BMSController(batteryPercentage, mode, route, reservePower);
