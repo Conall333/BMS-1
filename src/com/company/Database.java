@@ -8,7 +8,6 @@ public class Database {
         //monitors the cars state of charge during a trip
         // and logs it a database
 
-
     }
 
     public Object passSoc_Logs() {

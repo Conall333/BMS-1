@@ -15,9 +15,9 @@ public class GPS {
         myFloat = 1.0f;
         loc.add(myFloat);
 
-            // find location
+        // find location
 
-            return loc;
+        return loc;
 
     }
 

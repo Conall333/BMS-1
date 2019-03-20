@@ -16,14 +16,8 @@ public class GUI {
         System.out.println("\nGUI Information >>>\n");
         displaySoc(soc,dm);
         displayBinfo(bInfo);
-
-
         alertInfo(dm);
-
         displayRoute(nav);
-
-
-
 
     }
 
@@ -148,10 +142,7 @@ public class GUI {
 
         }
 
-
-
         System.out.println("Has the user Asked for a route? y/n");
-
         Scanner sc = new Scanner((System.in));
         String x = sc.nextLine();
 

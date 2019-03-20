@@ -1,13 +1,17 @@
 package com.company;
 
 
+import CarModel.Battery;
+import CarModel.Car;
+import CarModel.CarSystems;
+import CarModel.Motor;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BMSController {
 
     boolean noCmdLineInput = true;
-
 
     public double soc;
     float SoH;
@@ -40,7 +44,7 @@ public class BMSController {
 
     public BMSController run(){
 
-        PowerManagement powerManagement = new PowerManagement();
+        PowerManagement powerManagement;
         BMSController bms = new BMSController(soc,mode,route,reservePwr);
         if (!bms.checkInputs()) {
 
@@ -76,6 +80,7 @@ public class BMSController {
             // users asks for a route to charging station
             boolean gpsA = gui.searchForRoute(bms.route);
 
+
             // gps calculates location
             ArrayList<Float> loc;
             loc = gps.location();
@@ -83,14 +88,22 @@ public class BMSController {
             // location used by the nav to create a route to nearest charging station
             ArrayList<Float> nav = bms.nav(loc, dm, gpsA);
 
+            // car model classes
+            CarSystems carSys = new CarSystems(false, true, true, true, false, true, 20, 50, 24, 5);
+            Motor motor = new Motor(0.0, 200, 0);
+            // Battery battery = new Battery(120.0, 30.0, 1000.0, 14.0);
+
+
             // gui uses driver mode to display alerts, gui use state of charge to display state of charge
             // uses bInfo to display info about the battery, uses nav to display the route
             gui.GUI(dm, stateOfCharge, bInfo, nav);
 
+
             // power management is only active when the car is in automatic mode
             if (MtA) {
-                powerManagement.passDriverMode(dm);
+                powerManagement = new PowerManagement(dm,carSys,motor);
             }
+
 
             // Ecall system sends an Ecall when the battery is < 1%
             ECall eCall = new ECall(loc, dm);
@@ -125,10 +138,8 @@ public class BMSController {
         }
 
         System.out.println("Enter battery percentage: ");
-
         Scanner sc = new Scanner((System.in));
         Float x =  sc.nextFloat();
-
 
         return x;
     }
