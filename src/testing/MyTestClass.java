@@ -13,7 +13,7 @@ public class MyTestClass {
 
         @Test
         public void testBMS1() {
-            double batteryPercentage = 45;
+            double batteryPercentage = 49;
             boolean mode = true;
             boolean route = false;
             boolean reservePower = false;
@@ -26,8 +26,7 @@ public class MyTestClass {
             System.out.println(" Reserve Power Enabled: " + reservePower +"\n\nOutputs >>>> \n");
 
 
-            BMSController bms = new BMSController(batteryPercentage, mode, route, reservePower);
-            bms.run();
+            BMSController bms = new BMSController(batteryPercentage, mode, route, reservePower).run();
 
 
         }

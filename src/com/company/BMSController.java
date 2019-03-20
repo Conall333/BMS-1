@@ -18,7 +18,6 @@ public class BMSController {
     public boolean mode;
     public boolean reservePwr;
     public boolean route;
-    boolean attemptSearch;
     int dm;
     ArrayList<Float> loc;
 
@@ -30,23 +29,6 @@ public class BMSController {
         this.route = route;
     }
 
-    // Input Variables...
-    // SOH - float
-    // V - float
-    // I - float
-    // C - float
-    // T - float
-    // MtA - bool
-    // reservePwr - bool
-    // attemptSearch
-    // dm
-
-    // Functions
-    // SOC = output to DM
-    // DM - Switch 0 - 11 modes (0 = manual.. see automata)
-    // GUI Output - manual/auto = input to DM
-    // reservePower
-
 
     public static void main(String[] args) {
 
@@ -56,7 +38,7 @@ public class BMSController {
     }
 
 
-    public void run(){
+    public BMSController run(){
 
         PowerManagement powerManagement = new PowerManagement();
         BMSController bms = new BMSController(soc,mode,route,reservePwr);
@@ -73,10 +55,10 @@ public class BMSController {
             Object logs = db.passSoc_Logs();
 
             // calculates state of health using logs
-            Float stateOfHealth = bms.SoH(logs);
+            SoH = bms.SoH(logs);
 
             //calculates state of charge, for demoing purpose we take the battery % as a user input
-            double stateOfCharge = bms.Soc(dummyFloat, dummyFloat, dummyFloat, dummyFloat, stateOfHealth);
+            double stateOfCharge = bms.Soc(dummyFloat, dummyFloat, dummyFloat, dummyFloat, SoH);
 
             // passes the state of charge to the database,
             db.HandleSoc_Logs(stateOfCharge);
@@ -114,7 +96,11 @@ public class BMSController {
             ECall eCall = new ECall(loc, dm);
             eCall.send_Ecall(dm);
 
+            return bms;
+
         }
+
+    return bms;
 
     }
 
@@ -129,12 +115,10 @@ public class BMSController {
             return false;
         }
 
-
     }
 
 
     public double Soc(float V, float I, float C, float T, float SoH){
-
 
         if (noCmdLineInput){
             return soc;
@@ -153,9 +137,7 @@ public class BMSController {
 
     public float SoH(Object SoH_Logs){
 
-
         Float dummyValue  = 1.1f;
-
         return dummyValue;
     }
 
@@ -247,9 +229,7 @@ public class BMSController {
 
         boolean MtA = false;
 
-
         if (soc <= 5) {
-
 
         }
 
@@ -309,9 +289,6 @@ public class BMSController {
 
                 return reservePwr;
             }
-
-
-
 
             System.out.println("Is reserve power enabled? y/n: ");
 
