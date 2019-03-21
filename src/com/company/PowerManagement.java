@@ -21,7 +21,7 @@ public class PowerManagement {
 
 
     public void hvac (Integer dm, CarSystems carSys){
-        if (dm < 9) {
+        if (dm < 9 && dm > 0) {
 
             switch (dm) {
                 case 1:
@@ -63,7 +63,7 @@ public class PowerManagement {
 
         public void communications (Integer dm, CarSystems carSys){
 
-            if (dm < 9) {
+             if (dm < 9 && dm > 0) {
                 switch (dm) {
 
                 case 1:
@@ -122,7 +122,7 @@ public class PowerManagement {
 
 
         public void manageMotor(Integer dm, Motor motor) {
-            if (dm < 9) {
+            if (dm < 9 && dm > 0) {
                 switch (dm) {
 
                     case 1:
@@ -161,7 +161,7 @@ public class PowerManagement {
 
 
         public void gui_display (Integer dm, CarSystems carSys) {
-            if (dm < 9) {
+            if (dm < 9 && dm > 0) {
                 switch (dm) {
 
                     case 1:
@@ -206,7 +206,7 @@ public class PowerManagement {
 
 
         public void audio_system (Integer dm, CarSystems carSys){
-            if (dm < 9) {
+            if (dm < 9 && dm > 0) {
                 switch (dm) {
 
                     case 1:
