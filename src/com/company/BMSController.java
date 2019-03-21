@@ -1,8 +1,6 @@
 package com.company;
 
 
-import CarModel.Battery;
-import CarModel.Car;
 import CarModel.CarSystems;
 import CarModel.Motor;
 
@@ -36,7 +34,7 @@ public class BMSController {
 
     public static void main(String[] args) {
 
-        BMSController bms = new BMSController(40,true,false,false);
+        BMSController bms = new BMSController(60,true,false,false);
         bms.run();
 
     }
@@ -68,7 +66,7 @@ public class BMSController {
             db.HandleSoc_Logs(stateOfCharge);
 
             // for demoing purposes we need to know what the cars current state is
-            boolean MtA = bms.initialMtA(stateOfCharge);
+            boolean MtA = bms.initialCarMode(stateOfCharge);
             boolean reservePwr = bms.initialReservePwr(stateOfCharge);
 
             // calculates the driver mode
@@ -89,7 +87,7 @@ public class BMSController {
             ArrayList<Float> nav = bms.nav(loc, dm, gpsA);
 
             // car model classes
-            CarSystems carSys = new CarSystems(false, true, true, true, false, true, 20, 50, 24, 5);
+            CarSystems carSys = new CarSystems(false, true, true, true, false, true, 20, 100, 24, 5);
             Motor motor = new Motor(0.0, 200, 0);
             // Battery battery = new Battery(120.0, 30.0, 1000.0, 14.0);
 
@@ -233,65 +231,33 @@ public class BMSController {
 
 
 
-
-
-
-    public boolean initialMtA(Double soc) {
-
-        boolean MtA = false;
-
-        if (soc <= 5) {
-
-        }
-
+    public boolean initialCarMode(Double soc) {
         if (soc <= 50){
-
             if (noCmdLineInput){
-
                 if(mode) {
                     System.out.println("Automatic mode is enabled");
                 }
-
-                return mode;
             }
-
-
-            System.out.println("Is The car in Automatic mode? y/n: ");
-
-            Scanner sc = new Scanner((System.in));
-            String x = sc.nextLine();
-
-
-            if (x .equalsIgnoreCase("y")) {
-
-
-                System.out.println("Automatic mode is enabled");
-
-
-                MtA = true;
-                return  MtA;
-
-            } else {
-                MtA = false;
-                return  MtA;
-
+            else {
+                System.out.println("Is The car in Automatic mode? y/n: ");
+                Scanner sc = new Scanner((System.in));
+                String input = sc.nextLine();
+                if (input.equalsIgnoreCase("y")) {
+                    System.out.println("Automatic mode is enabled");
+                    mode = true;
+                } else {
+                    mode = false;
+                }
             }
-
-
-
         }
-        return MtA;
-
-
+        return mode;
     }
 
 
     public boolean initialReservePwr(Double soc) {
 
         if (soc <= 5) {
-
             reservePwr = false;
-
             if (noCmdLineInput){
 
                 if(reservePwr) {

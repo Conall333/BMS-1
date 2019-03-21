@@ -55,7 +55,7 @@ public class PowerManagement {
 
 
             }
-            System.out.println("Fan Speed is " + carSys.getFanSpeed());
+            System.out.println("Max Fan Speed is " + carSys.getFanSpeed());
             System.out.println("Max hvac temp is " + carSys.getMaxTemp());
         }
     }
