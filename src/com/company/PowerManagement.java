@@ -123,41 +123,33 @@ public class PowerManagement {
 
         public void manageMotor(Integer dm, Motor motor) {
             if (dm < 9 && dm > 0) {
-                switch (dm) {
-
-                    case 1:
+                    if (dm ==1) {
                         motor.setTopSpeed(140);
-                        break;
-                    case 2:
+                    }
+                    if (dm==2) {
                         motor.setTopSpeed(140);
-                        break;
-                    case 3:
+                    }
+                    else if (dm == 3) {
                         motor.setTopSpeed(120);
-                        break;
-                    case 4:
+                    }
+                    else if (dm == 4) {
+                    motor.setTopSpeed(120);
+                    }
+                    else if (dm == 5) {
                         motor.setTopSpeed(120);
-                        break;
-                    case 5:
-                        motor.setTopSpeed(120);
-                        break;
-                    case 6:
+                    }
+                    else if (dm ==6) {
                         motor.setTopSpeed(100);
-                        break;
-                    case 7:
+                    }
+                    else if (dm == 7) {
                         motor.setTopSpeed(80);
-                        break;
-                    case 8:
+                    }
+                    else if(dm == 8) {
                         motor.setTopSpeed(80);
-                        break;
-
-
-                    default:
-
-
+                    }
                 }
                 System.out.println("Top Speed is " + motor.getTopSpeed() + " km/h");
         }
-    }
 
 
         public void gui_display (Integer dm, CarSystems carSys) {
