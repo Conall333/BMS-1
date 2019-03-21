@@ -21,222 +21,223 @@ public class PowerManagement {
 
 
     public void hvac (Integer dm, CarSystems carSys){
+        if (dm < 9) {
 
-        switch (dm) {
-            case 1:
-                carSys.setFanSpeed(5);
-                break;
-            case 2:
-                carSys.setFanSpeed(4);
-                break;
-            case 3:
-                carSys.setFanSpeed(3);
-                break;
-            case 4:
-                carSys.setFanSpeed(3);
-                break;
-            case 5:
-                carSys.setFanSpeed(2);
-                carSys.setMaxTemp(18);
-                break;
-            case 6:
-                carSys.setFanSpeed(2);
-                carSys.setMaxTemp(18);
-                break;
-            case 7:
-                carSys.setFanSpeed(1);
-                break;
-            case 8:
-                carSys.setFanSpeed(1);
-                break;
+            switch (dm) {
+                case 1:
+                    carSys.setFanSpeed(5);
+                    break;
+                case 2:
+                    carSys.setFanSpeed(4);
+                    break;
+                case 3:
+                    carSys.setFanSpeed(3);
+                    break;
+                case 4:
+                    carSys.setFanSpeed(3);
+                    break;
+                case 5:
+                    carSys.setFanSpeed(2);
+                    carSys.setMaxTemp(18);
+                    break;
+                case 6:
+                    carSys.setFanSpeed(2);
+                    carSys.setMaxTemp(18);
+                    break;
+                case 7:
+                    carSys.setFanSpeed(1);
+                    break;
+                case 8:
+                    carSys.setFanSpeed(1);
+                    break;
 
-            default:
+                default:
 
 
+            }
+            System.out.println("Fan Speed is " + carSys.getFanSpeed());
+            System.out.println("Max hvac temp is " + carSys.getMaxTemp());
         }
-        System.out.println("Fan Speed is " + carSys.getFanSpeed());
-        System.out.println("Max hvac temp is " + carSys.getMaxTemp());
-
     }
 
 
         public void communications (Integer dm, CarSystems carSys){
 
-        switch (dm) {
-
-            case 1:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 2:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 3:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 4:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 5:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 6:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 7:
-                carSys.setCellular(false);
-                carSys.setBluetooth(true);
-                break;
-            case 8:
-                carSys.setCellular(false);
-                carSys.setBluetooth(false);
-                break;
-
-
-            default:
-
-
-        }
-
-        if (!carSys.getCellular()) {
-                System.out.println("Cellular is Disabled");
-            }
-        if (carSys.getCellular()) {
-                System.out.println("Cellular is Enabled");
-            }
-
-        if (!carSys.getBluetooth()) {
-                System.out.println("Bluetooth is Disabled");
-            }
-        if (carSys.getBluetooth()) {
-                System.out.println("Bluetooth is Enabled");
-            }
-
-    }
-
-
-        public void manageMotor(Integer dm, Motor motor){
-
-        switch (dm) {
-
-            case 1:
-                motor.setTopSpeed(140);
-                break;
-            case 2:
-                motor.setTopSpeed(140);
-                break;
-            case 3:
-                motor.setTopSpeed(120);
-                break;
-            case 4:
-                motor.setTopSpeed(120);
-                break;
-            case 5:
-                motor.setTopSpeed(120);
-                break;
-            case 6:
-                motor.setTopSpeed(100);
-                break;
-            case 7:
-                motor.setTopSpeed(80);
-                break;
-            case 8:
-                motor.setTopSpeed(80);
-                break;
-
-
-            default:
-
-
-        }
-            System.out.println("Top Speed is "+ motor.getTopSpeed() +" km/h");
-
-    }
-
-
-        public void gui_display (Integer dm, CarSystems carSys) {
-
-            switch (dm) {
+            if (dm < 9) {
+                switch (dm) {
 
                 case 1:
-                    carSys.setDisplayBrightness(false);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 2:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 3:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 4:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 5:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 6:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 7:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(true);
                     break;
                 case 8:
-                    carSys.setDisplayBrightness(true);
+                    carSys.setCellular(false);
+                    carSys.setBluetooth(false);
                     break;
 
                 default:
 
-            }
-
-
-            if (!carSys.getDisplayBrightness()) {
-                System.out.println("GUI adaptive brightness disabled");
-            }
-            if (carSys.getDisplayBrightness()) {
-                System.out.println("Limited gui adaptive brightness enabled");
 
             }
 
+            if (!carSys.getCellular()) {
+                System.out.println("Cellular is Disabled");
+            }
+            if (carSys.getCellular()) {
+                System.out.println("Cellular is Enabled");
+            }
+
+            if (!carSys.getBluetooth()) {
+                System.out.println("Bluetooth is Disabled");
+            }
+            if (carSys.getBluetooth()) {
+                System.out.println("Bluetooth is Enabled");
+            }
+        }
+    }
+
+
+        public void manageMotor(Integer dm, Motor motor) {
+            if (dm < 9) {
+                switch (dm) {
+
+                    case 1:
+                        motor.setTopSpeed(140);
+                        break;
+                    case 2:
+                        motor.setTopSpeed(140);
+                        break;
+                    case 3:
+                        motor.setTopSpeed(120);
+                        break;
+                    case 4:
+                        motor.setTopSpeed(120);
+                        break;
+                    case 5:
+                        motor.setTopSpeed(120);
+                        break;
+                    case 6:
+                        motor.setTopSpeed(100);
+                        break;
+                    case 7:
+                        motor.setTopSpeed(80);
+                        break;
+                    case 8:
+                        motor.setTopSpeed(80);
+                        break;
+
+
+                    default:
+
+
+                }
+                System.out.println("Top Speed is " + motor.getTopSpeed() + " km/h");
+        }
+    }
+
+
+        public void gui_display (Integer dm, CarSystems carSys) {
+            if (dm < 9) {
+                switch (dm) {
+
+                    case 1:
+                        carSys.setDisplayBrightness(false);
+                        break;
+                    case 2:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 3:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 4:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 5:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 6:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 7:
+                        carSys.setDisplayBrightness(true);
+                        break;
+                    case 8:
+                        carSys.setDisplayBrightness(true);
+                        break;
+
+                    default:
+
+                }
+
+
+                if (!carSys.getDisplayBrightness()) {
+                    System.out.println("GUI adaptive brightness disabled");
+                }
+                if (carSys.getDisplayBrightness()) {
+                    System.out.println("Limited gui adaptive brightness enabled");
+
+                }
+            }
         }
 
 
         public void audio_system (Integer dm, CarSystems carSys){
+            if (dm < 9) {
+                switch (dm) {
 
-        switch (dm) {
+                    case 1:
+                        carSys.setMaxVolume(90);
+                        break;
+                    case 2:
+                        carSys.setMaxVolume(80);
+                        break;
+                    case 3:
+                        carSys.setMaxVolume(80);
+                        break;
+                    case 4:
+                        carSys.setMaxVolume(80);
+                        break;
+                    case 5:
+                        carSys.setMaxVolume(60);
+                        break;
+                    case 6:
+                        carSys.setMaxVolume(60);
+                        break;
+                    case 7:
+                        carSys.setMaxVolume(50);
+                        break;
+                    case 8:
+                        carSys.setMaxVolume(50);
+                        break;
+                    default:
 
-            case 1:
-                carSys.setMaxVolume(90);
-                break;
-            case 2:
-                carSys.setMaxVolume(80);
-                break;
-            case 3:
-                carSys.setMaxVolume(80);
-                break;
-            case 4:
-                carSys.setMaxVolume(80);
-                break;
-            case 5:
-                carSys.setMaxVolume(60);
-                break;
-            case 6:
-                carSys.setMaxVolume(60);
-                break;
-            case 7:
-                carSys.setMaxVolume(50);
-                break;
-            case 8:
-                carSys.setMaxVolume(50);
-                break;
-            default:
-
-        }
-        System.out.println("Max volume is " + carSys.getMaxVolume() +  "%");
-
+                }
+                System.out.println("Max volume is " + carSys.getMaxVolume() + "%");
+            }
     }
 
 
