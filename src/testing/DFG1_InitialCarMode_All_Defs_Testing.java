@@ -27,6 +27,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
@@ -56,6 +57,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
@@ -83,6 +85,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
@@ -90,7 +93,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
-        assertTrue(!returnedMode);
+        assertTrue(returnedMode);
 
     }
 
@@ -110,6 +113,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
@@ -137,6 +141,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
@@ -164,6 +169,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
 
 
         bms.setNoCmdLineInput(noCmdLineInput);
+        bms.setMode(mode);
 
         // presets the user input when required
         ByteArrayInputStream in = new ByteArrayInputStream(userInput.getBytes());
