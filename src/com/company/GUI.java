@@ -90,7 +90,7 @@ public class GUI {
         return  MtA;
     }
 
-    private void displaySoc(double soc,int dm) {
+    public void displaySoc(double soc,int dm) {
 
         int displayedSoc = (int) Math.round((soc - 5)/95 *100);
 
