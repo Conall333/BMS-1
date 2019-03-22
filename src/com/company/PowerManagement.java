@@ -6,7 +6,7 @@ import CarModel.Motor;
 public class PowerManagement {
 
 
-   PowerManagement(Integer dm, CarSystems carSys, Motor motor){
+   public PowerManagement(Integer dm, CarSystems carSys, Motor motor){
 
         System.out.println("\nPower Management in this mode >>> \n");
         hvac(dm, carSys);
@@ -15,9 +15,9 @@ public class PowerManagement {
         gui_display(dm, carSys);
         audio_system(dm, carSys);
 
-
-
     }
+
+    public PowerManagement(){}
 
 
     public void hvac (Integer dm, CarSystems carSys){

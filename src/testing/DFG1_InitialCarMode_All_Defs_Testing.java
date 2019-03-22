@@ -25,7 +25,6 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         System.out.println(" User input(if required): " + userInput + "\n");
 
 
-
         bms.setNoCmdLineInput(noCmdLineInput);
         bms.setMode(mode);
 
@@ -36,8 +35,6 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(returnedMode);
-
-
 
     }
 
