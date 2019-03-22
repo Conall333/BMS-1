@@ -115,6 +115,10 @@ public class BMSController {
 
     }
 
+    public void setNoCmdLineInput(boolean decision){
+        noCmdLineInput = decision;
+    }
+
 
     public boolean checkInputs() {
         if (soc > 100 || soc < 0) {

@@ -126,7 +126,7 @@ public class PowerManagement {
                 if (dm == 1) {
                     motor.setTopSpeed(140);
                 }
-                if (dm == 2) {
+                else if (dm == 2) {
                     motor.setTopSpeed(140);
                 } else if (dm == 3) {
                     motor.setTopSpeed(120);
@@ -145,8 +145,6 @@ public class PowerManagement {
                 System.out.println("Top Speed is " + motor.getTopSpeed() + " km/h");
             }
         }
-
-
 
 
         public void gui_display (Integer dm, CarSystems carSys) {
