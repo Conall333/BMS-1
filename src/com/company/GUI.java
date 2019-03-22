@@ -21,6 +21,8 @@ public class GUI {
 
     }
 
+    public GUI(){}
+
     private void alertInfo(int dm) {
 
         switch(dm) {

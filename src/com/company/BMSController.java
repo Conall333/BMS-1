@@ -31,6 +31,8 @@ public class BMSController {
         this.route = route;
     }
 
+    public BMSController(){}
+
 
     public static void main(String[] args) {
 

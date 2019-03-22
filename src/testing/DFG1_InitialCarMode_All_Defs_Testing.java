@@ -7,7 +7,7 @@ import java.io.ByteArrayInputStream;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DFG1_InitialCarMode_All_Defs_Testing {
-    BMSController bms = new BMSController(100, false, false, false).run();
+    BMSController bms = new BMSController(100, false, false, false);
 
     // only require the first 2 tests to cover all defs
     @Test
@@ -35,6 +35,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
@@ -63,6 +64,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(!returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
@@ -91,6 +93,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
@@ -119,6 +122,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
@@ -147,6 +151,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(!returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
@@ -175,6 +180,7 @@ public class DFG1_InitialCarMode_All_Defs_Testing {
         boolean returnedMode = bms.initialCarMode(soc);
         System.out.println("The returned variable mode is: " + returnedMode);
         assertTrue(returnedMode);
+        System.out.println("\n******* End of Test Case ******");
 
     }
 
