@@ -242,6 +242,7 @@ public class BMSController {
 
 
     public boolean initialCarMode(Double soc) {
+
         if (soc <= 50){
             if (noCmdLineInput){
                 if(mode) {
