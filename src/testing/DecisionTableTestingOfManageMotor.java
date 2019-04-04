@@ -5,7 +5,7 @@ import com.company.PowerManagement;
 import org.junit.jupiter.api.Test;
 
 
-public class decisionTableTestingOfManageMotor {
+public class DecisionTableTestingOfManageMotor {
 
     @Test
     public void TC1() {

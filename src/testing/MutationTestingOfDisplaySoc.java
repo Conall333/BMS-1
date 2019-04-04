@@ -3,7 +3,7 @@ package testing;
 import com.company.GUI;
 import org.junit.jupiter.api.Test;
 
-public class mutationTestingOfDisplaySoc {
+public class MutationTestingOfDisplaySoc {
 
     @Test
     public void Dfg2_Test1() {
