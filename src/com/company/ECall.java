@@ -17,8 +17,6 @@ public class ECall {
 
     public void send_Ecall(int dm){
         if (dm == 11) {
-
-            // use location to send ecall
             System.out.println("Ecall has been sent");
 
         }

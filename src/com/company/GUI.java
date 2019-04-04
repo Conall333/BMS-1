@@ -11,10 +11,9 @@ public class GUI {
 
     public void GUI(int dm, Double soc, String bInfo, ArrayList<Float> nav) {
 
-        // AutoswitchMode(dm,soc);
 
         System.out.println("\nGUI Information >>>\n");
-        displaySoc(soc,dm);
+        displaySoc(soc ,dm);
         displayBinfo(bInfo);
         alertInfo(dm);
         displayRoute(nav);

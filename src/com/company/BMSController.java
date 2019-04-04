@@ -46,7 +46,7 @@ public class BMSController {
 
         PowerManagement powerManagement;
         BMSController bms = new BMSController(soc,mode,route,reservePwr);
-        if (!bms.checkInputs()) {
+        if (!bms.checkSocInput()) {
 
             GUI gui = new GUI();
             GPS gps = new GPS();
@@ -126,7 +126,7 @@ public class BMSController {
     }
 
 
-    public boolean checkInputs() {
+    public boolean checkSocInput() {
         if (soc > 100 || soc < 0) {
             System.out.println("invalid soc");
             return true;
