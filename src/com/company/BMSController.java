@@ -210,8 +210,7 @@ public class BMSController {
 
                 dm = 11;
             }
-
-            return dm;
+            return dm + 17;
         }
     }
 
